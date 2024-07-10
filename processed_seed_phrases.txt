@@ -1,0 +1,2 @@
+It will save all the prcessed seed phrases here:
+

@@ -1,0 +1,1 @@
+All the seed phrases with balance >0 will be saved here
