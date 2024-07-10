@@ -7,6 +7,8 @@ By using it you agree automaticly to not steal funds in case of succes of the sc
 Tool for brute forcing BIP39 seed phrases for ETH wallets
 
 Code was forked from the pierce403 user that did bip39brute. It kinda didn't worked as i wished so i forked a lot of things over there to make it work on my Ubuntu system.
+The script will save in .txt that are already added the seed phrases that have balance and also the processed seed phrases to minimise the 
+time the script work to find an active wallet
 
 Some useful resources:  
 https://iancoleman.io/bip39/  
