@@ -1,12 +1,12 @@
-import os 
-import requests #DON'T FORGET TO ADD ALL LIBRARIES TO RUN THIS SCRIPT PROPERLY with command git install *librarie* (replace librarie with an actual librarie)
+import os #DON'T FORGET TO UPDATE AND INSTALL ALL THE LIBRARIES THAT ARE NECESSARY
+import requests
 import time
 import sys
 from mnemonic import Mnemonic
 from web3 import Web3
 from eth_account import Account
 from requests.exceptions import ConnectionError, HTTPError
-from threading import Lock, Semaphore, Thread  
+from threading import Lock, Semaphore, Thread
 
 # Enable the unaudited HD wallet features
 Account.enable_unaudited_hdwallet_features()
@@ -15,7 +15,7 @@ Account.enable_unaudited_hdwallet_features()
 API_KEYS = ['API KEY 1', 'API KEY 2', 'API KEY 3']  # Replace with your Etherscan API keys
 ETHERSCAN_URL = 'https://api.etherscan.io/api'
 INFURA_PROJECT_ID = 'Infura Project ID'  # Replace with your Infura Project ID
-w3 = Web3(Web3.HTTPProvider(f'https://mainnet.infura.io/v3/Infura Project ID')) # Replace with your Infura Project ID
+w3 = Web3(Web3.HTTPProvider(f'https://mainnet.infura.io/v3/Infura Project ID'))
 
 # Rate limiting
 RATE_LIMIT = 5  # Maximum number of requests per second
@@ -181,12 +181,14 @@ def display_statistics():
     global seed_phrase_count, wallet_balance_checked, wallets_with_zero_balance, wallets_with_zero_tx, wallets_with_tx, wallets_with_balance
 
     while True:
-        time.sleep(5)  # Update statistics every 5 seconds
+        time.sleep(5)  # Update statistics every second
         if os.getenv('TERM'):  # Check if TERM is set
             os.system('cls' if os.name == 'nt' else 'clear')  # Clear the terminal screen
 
         with lock:
-            speed = wallet_balance_checked / (time.time() - start_time) * 60 if wallet_balance_checked > 0 else 0
+            elapsed_time = time.time() - start_time
+            elapsed_minutes = elapsed_time / 60
+            speed = wallet_balance_checked / elapsed_time * 60 if wallet_balance_checked > 0 else 0
             print(
                 f"Speed: {COLOR_ORANGE}{speed:.2f}{COLOR_RESET} W/min | "
                 f"SPG: {COLOR_VIOLET}{seed_phrase_count}{COLOR_RESET} | "
@@ -194,7 +196,8 @@ def display_statistics():
                 f"WwB < 0: {COLOR_RED}{wallets_with_zero_balance}{COLOR_RESET} | "
                 f"WwT < 0: {COLOR_RED}{wallets_with_zero_tx}{COLOR_RESET} | "
                 f"WwT > 0: {COLOR_GREEN}{wallets_with_tx}{COLOR_RESET} | "
-                f"WwB > 0: {COLOR_GREEN}{wallets_with_balance}{COLOR_RESET}"
+                f"WwB > 0: {COLOR_GREEN}{wallets_with_balance}{COLOR_RESET} | "
+                f"Time: {elapsed_minutes:.2f} min"
             )
 
 # Main function to run the script indefinitely
@@ -248,4 +251,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
