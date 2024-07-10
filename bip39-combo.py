@@ -1,5 +1,5 @@
-import os
-import requests
+import os 
+import requests #DON'T FORGET TO ADD ALL LIBRARIES TO RUN THIS SCRIPT PROPERLY with command git install *librarie* (replace librarie with an actual librarie)
 import time
 import sys
 from mnemonic import Mnemonic
@@ -15,7 +15,7 @@ Account.enable_unaudited_hdwallet_features()
 API_KEYS = ['API KEY 1', 'API KEY 2', 'API KEY 3']  # Replace with your Etherscan API keys
 ETHERSCAN_URL = 'https://api.etherscan.io/api'
 INFURA_PROJECT_ID = 'Infura Project ID'  # Replace with your Infura Project ID
-w3 = Web3(Web3.HTTPProvider(f'https://mainnet.infura.io/v3/Infura Project ID'))
+w3 = Web3(Web3.HTTPProvider(f'https://mainnet.infura.io/v3/Infura Project ID')) # Replace with your Infura Project ID
 
 # Rate limiting
 RATE_LIMIT = 5  # Maximum number of requests per second
